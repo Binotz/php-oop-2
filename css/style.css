@@ -9,9 +9,11 @@
 .product-layout,
 .user-cart-layout{
     margin-bottom: 3rem;
+    background-color: #dadada;
+    padding: 1rem;
 }
 
-.user-name{
+.user-balance{
     margin-bottom: 2rem;
 }
 .user-price{

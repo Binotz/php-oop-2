@@ -27,14 +27,13 @@
 
         $loggedUser->addToCart($food);
         $loggedUser->addToCart($dogHouse);
+        $loggedUser->setBalance(1000000);
+
         $AnonUser->addToCart($toy);
+        $AnonUser->setBalance(1);
 
         $listOfProducts = [$food, $dogHouse, $toy];
         $listOfUsers = [$loggedUser, $AnonUser];
-        // var_dump($food);
-        // var_dump($dogHouse);
-        // var_dump($toy);
-        // var_dump($userLogged);
     ?>
     <main>
         <div class="container">
@@ -58,11 +57,14 @@
                     <div class="user-cart-layout">
                         <div class="user-cart-content">
                             <div class="user-name">Nome Utente: <?php echo $user->name;?></div>
+                            <div class="user-balance">Saldo: <?php echo $user->getBalance();?></div>
                             <?php foreach($user->getCart() as $product) { ?>
                                     <div class="cart-product-name">Nome Prodotto: <?php echo $product->name; ?></div>
-                                    <div class="user-price">Prezzo <?php if ($user->isRegistered){ echo 'scontato a ';}?>: <?php echo $product->price - ($product->price * $user->discount)/100 ?> &euro;</div>
+                                    <div class="user-price">Prezzo <?php if ($user->isRegistered){ echo 'scontato a ';}?>: <?php echo $product->price ?> &euro;</div>
                             <?php } ?>
+                            
                         </div>
+                        <h3><?php if($user->doYouHaveEnoughMoney()){echo $user->name . ', Hai abbastanza soldi per comprare le cose';}else{echo $user->name . ', NON hai abbastanza soldi per comprare le cose';} ?></h3>
                     </div>
                 <?php } ?>
             </div>
