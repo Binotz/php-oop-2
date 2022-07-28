@@ -2,7 +2,7 @@
 
     class Product{
         public $name;
-        public $description;
+        public $description = '';
         public $price;
 
         public function __construct($_name, $_price){
