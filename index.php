@@ -57,7 +57,7 @@
                     <div class="user-cart-layout">
                         <div class="user-cart-content">
                             <div class="user-name">Nome Utente: <?php echo $user->name;?></div>
-                            <div class="user-balance">Saldo: <?php echo $user->getBalance();?></div>
+                            <div class="user-balance">Saldo: <?php echo $user->getBalance();?> &euro;</div>
                             <?php foreach($user->getCart() as $product) { ?>
                                     <div class="cart-product-name">Nome Prodotto: <?php echo $product->name; ?></div>
                                     <div class="user-price">Prezzo <?php if ($user->isRegistered){ echo 'scontato a ';}?>: <?php echo $product->price ?> &euro;</div>
