@@ -28,7 +28,7 @@
         $loggedUser = new User('Riccardo', 'Binotto', 'riccardo@email.it', true);
         $AnonUser = new User('Mister-X', 'Non lo so', 'test@mail.it', false);
 
-        
+
         $loggedUser->addToCart($food);
         $loggedUser->addToCart($dogHouse);
         $loggedUser->setBalance(1000000);

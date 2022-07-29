@@ -25,9 +25,10 @@
         }
 
         public function addToCart($product){
+            $currentProduct = clone $product;
             //apply the discount as soon as the product is added to the cart
-            $product->price -= ($product->price * $this->discount)/100;
-            $this->cart[] = $product;
+            $currentProduct->price -= ($currentProduct->price * $this->discount)/100;
+            $this->cart[] = $currentProduct;
         }
 
         public function setBalance($bigMoney){
