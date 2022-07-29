@@ -42,10 +42,15 @@
             foreach($this->cart as $product){
                 $cartTotalPrice += $product->price;
             }
+            // if($this->balance > $cartTotalPrice){
+            //     return true;
+            // }
+            // return false;
             if($this->balance > $cartTotalPrice){
                 return true;
+            } else {
+                throw new Exception("Utente: $this->name: Saldo non disponibile sulla carta");
             }
-            return false;
         }
     }
 

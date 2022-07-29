@@ -19,19 +19,23 @@
 
         $food = new Food('Crocchette', 10, 20);
         $food->description="Buonissime";
+
         $dogHouse = new DogHouse('Cuccia', 20, 'Grande');
+
         $toy = new Toy('Pallina', 5);
+        $toy->isForTraining = true;
 
         $loggedUser = new User('Riccardo', 'Binotto', 'riccardo@email.it', true);
         $AnonUser = new User('Mister-X', 'Non lo so', 'test@mail.it', false);
 
+        
         $loggedUser->addToCart($food);
         $loggedUser->addToCart($dogHouse);
         $loggedUser->setBalance(1000000);
-
+        
         $AnonUser->addToCart($toy);
         $AnonUser->setBalance(1);
-
+        
         $listOfProducts = [$food, $dogHouse, $toy];
         $listOfUsers = [$loggedUser, $AnonUser];
     ?>
@@ -46,6 +50,7 @@
                             <div class="name">Nome: <?php echo $product->name;?></div>
                             <div class="price">Prezzo: <?php echo $product->price;?> &euro;</div>
                             <?php if ($product->description !== ''){ echo '<div class="description">Descrizione: ' . $product->description . '</div>';}?>
+                            <?php if ($product instanceof Toy && $product->isForTraining){ echo '<div class="training">Categoria: Gioco per allenamento</div>';}?>
                         </div>
                     </div>
                 <?php } ?>
@@ -64,7 +69,15 @@
                             <?php } ?>
                             
                         </div>
-                        <h3><?php if($user->doYouHaveEnoughMoney()){echo $user->name . ', Hai abbastanza soldi per comprare le cose';}else{echo $user->name . ', NON hai abbastanza soldi per comprare le cose';} ?></h3>
+                        <h3><?php 
+                                    try{
+                                        if($user->doYouHaveEnoughMoney()){
+                                            echo $user->name . ', Hai abbastanza soldi per comprare le cose';
+                                        }
+                                    }catch(Exception $err){
+                                        echo $user->name . ', non hai abbastanza soldi per comprare le cose';
+                                    } 
+                                        ?></h3>                                     
                     </div>
                 <?php } ?>
             </div>
